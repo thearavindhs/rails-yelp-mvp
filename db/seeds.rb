@@ -11,14 +11,12 @@
     name: Faker::Restaurant.name,
     address: Faker::Address.street_address,
     phone_number: Faker::PhoneNumber.cell_phone,
-    category: ['chinese', 'italian', 'japanese', 'french', 'belgian'].sample
+    category: %w[chinese italian japanese french belgian].sample
   )
   restaurant.save!
   rand(1..5).times do
     review = Review.new(
-      rating: rand(1..5),
-      content:  Faker::Restaurant.review,
-      restaurant:  restaurant
+      rating: rand(1..5), content: Faker::Restaurant.review, restaurant: restaurant
     )
     review.save!
   end
